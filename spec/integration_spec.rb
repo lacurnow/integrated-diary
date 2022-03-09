@@ -34,4 +34,15 @@ RSpec.describe "integration" do
       expect(diary.count_words).to eq 5
     end
   end
+
+  describe "#reading_time" do
+    it "returns an integer representing an estimated reading time of the diary based on wpm" do
+      diary = Diary.new
+      diary_entry = DiaryEntry.new("my_title", "my contents")
+      diary_entry_2 = DiaryEntry.new("my_title_2", "my contents 2")
+      new_entry = diary.add(diary_entry)
+      new_entry = diary.add(diary_entry_2)
+      expect(diary.reading_time(1)).to eq 5
+    end
+  end
 end
