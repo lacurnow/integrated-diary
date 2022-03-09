@@ -1,13 +1,16 @@
+require_relative "diary_entry.rb"
+
 class Diary
   def initialize
+    @entries = {}
   end
 
   def add(entry) # entry is an instance of DiaryEntry
-    # Returns nothing
+    @entries[entry.title] = entry.contents
   end
 
   def all
-    # Returns a list of all entries
+    @entries
   end
 
   def count_words
@@ -30,3 +33,4 @@ class Diary
     # have available given their reading speed.
   end
 end
+
