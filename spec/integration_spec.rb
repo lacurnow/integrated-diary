@@ -13,4 +13,25 @@ RSpec.describe "integration" do
   end
 
   describe "#all" do
+    it "returns all the entries in the diary" do
+      diary = Diary.new
+      diary_entry = DiaryEntry.new("my_title", "my_contents")
+      diary_entry_2 = DiaryEntry.new("my_title_2", "my_contents_2")
+      new_entry = diary.add(diary_entry)
+      new_entry = diary.add(diary_entry_2)
+      result = diary.all
+      expect(result).to eq "my_title"=>"my_contents", "my_title_2"=>"my_contents_2"
+    end
+  end
+
+  describe "#count_words" do
+    it "counts all the words of all entries in the diary" do
+      diary = Diary.new
+      diary_entry = DiaryEntry.new("my_title", "my contents")
+      diary_entry_2 = DiaryEntry.new("my_title_2", "my contents 2")
+      new_entry = diary.add(diary_entry)
+      new_entry = diary.add(diary_entry_2)
+      expect(diary.count_words).to eq 5
+    end
+  end
 end

@@ -3,6 +3,7 @@ require_relative "diary_entry.rb"
 class Diary
   def initialize
     @entries = {}
+    @count_words = []
   end
 
   def add(entry) # entry is an instance of DiaryEntry
@@ -14,7 +15,9 @@ class Diary
   end
 
   def count_words
-    # Returns the number of words in all diary entries
+    @entries.each_value {|value| @count_words << value}
+    words_array = @count_words.join(" ").split(" ")
+    words_array.length
   end
 
   def reading_time(wpm) # wpm is an integer representing
