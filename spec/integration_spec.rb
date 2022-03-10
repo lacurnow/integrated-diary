@@ -45,4 +45,18 @@ RSpec.describe "integration" do
       expect(diary.reading_time(1)).to eq 5
     end
   end
+
+  describe "#find_best_entry_for_reading_time" do
+    it "returns the longest diary entrance readable in the given time based on the user's reading speed" do
+      diary = Diary.new
+      diary_entry = DiaryEntry.new("my_title", "my contents")
+      diary_entry_2 = DiaryEntry.new("my_title_2", "my contents 2")
+      diary_entry_3 = DiaryEntry.new("my_title_3", "my contents 2 again")
+      new_entry = diary.add(diary_entry)
+      new_entry = diary.add(diary_entry_2)
+      new_entry = diary.add(diary_entry_3)
+      result = diary.find_best_entry_for_reading_time(1, 4)
+      expect(result).to eq "my contents 2 again"
+    end
+  end
 end
